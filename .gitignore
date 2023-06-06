@@ -1,0 +1,26 @@
+# Jupyter spyder gitignore 
+# Created by https://www.toptal.com/developers/gitignore/api/jupyter,spyder,git
+# Edit at https://www.toptal.com/developers/gitignore?templates=jupyter,spyder,git
+
+### Jupyter ###
+# Temporary files
+.ipynb_checkpoints
+
+# Kernel output
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ipython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+### Spyder ###
+.spyderproject
+.spyproject
+
+
+

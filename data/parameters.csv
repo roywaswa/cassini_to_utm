@@ -1,0 +1,14 @@
+parameters,CASSINI,UTM
+"flattening, f",0.003,0.003407561
+"ecentricity, e2",0.007,0.006803511
+"semi major axis,a",20926348,6378249.145
+"semi minor axis,b",20855232.84,6356514.87
+Spheroid,Clarke 1858,Clarke 1880
+projection,,TM
+Unit of measure,feet,metre
+Meridian of origin,37 E,39E
+latitude of origin,Equator,Equator
+SF. origin,,0.9996
+false easting,,500000W
+false northing,,10000000S
+Datum,New(1960) arc,New(1960) arc
