@@ -16,26 +16,28 @@ def cassini_to_utm(cassini_coods:str, control_coods:str, conformal:bool=False):
     if conformal == False:
         cassini_controls['conformal_easting'] = cassini_controls.apply(ctu.convert_to_conformal,axis=1)
         controls['conformal_easting'] = controls.apply(ctu.convert_to_conformal,axis=1)
+        cass_coods['conformal_easting'] = cass_coods.apply(ctu.convert_to_conformal,axis=1)
     [a,i] = mf.create_numpy_array(controls)
     tr_params = mf.calculate_parameters(a,i)
-    print(tr_params)
-    """
     utm_cods_cass = pd.DataFrame({
-        'northing':cass_coods.apply(lambda row: northing_comp(row, tr_params),axis=1),
-        'easting':cass_coods.apply(lambda row: easting_comp(row, tr_params),axis=1),
+        'northing':cass_coods.apply(lambda row: ctu.northing_comp(row, tr_params),axis=1),
+        'easting':cass_coods.apply(lambda row: ctu.easting_comp(row, tr_params),axis=1),
         })
-    wgs_latlon = convert_to_latlon(utm_cods_cass)
-    return wgs_latlon
-    """
+    stn = cass_coods[["stn"]]
+    utm_cods = utm_cods_cass[["northing","easting"]]
+    wgs = ctu.convert_to_latlon(utm_cods_cass)
+    wgs_final = pd.concat([stn,utm_cods, wgs], axis=1)
+    return wgs_final
 
 
 
 
 
 if __name__ == "__main__":
-    cassini_to_utm(
-        "C:/Users/roywa/Documents/ATTACHMENT/cass_utm/data/test.csv", 
+    finals = cassini_to_utm(
+        "C:/Users/roywa/Documents/ATTACHMENT/cass_utm/data/KAGOYA.csv", 
         "C:/Users/roywa/Documents/ATTACHMENT/cass_utm/data/controls.csv")
+    finals.to_csv("./data/KAGOYA_trial_wgs.csv", index=False)
 
 
 

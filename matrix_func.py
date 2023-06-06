@@ -17,9 +17,9 @@ def create_numpy_array(control_df:pd.DataFrame):
     i_matrix = pd.concat([utm_eastings, utm_northings], ignore_index=True)
     i_matrix.to_numpy()
 
-    cassini_df = control_df.iloc[:,1:3]
-    print(control_df)
-    cass_simple = cassini_df[['conformal_easting','cass_northings']]
+
+    
+    cass_simple = control_df[['conformal_easting','cass_northings']]
     cass_simple.columns = ['x','y']
     cass_simple['xx'] = cass_simple['x']**2
     cass_simple['xy'] = cass_simple['x']*cass_simple['y']
